@@ -30,6 +30,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    viewBinding{
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -42,4 +47,19 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // 메테리얼
+    implementation 'com.google.android.meterial:meterial:1.1.0'
+
+    // 레트로핏
+    def retrofit_version = "2.8.1"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // gson 컨버터
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // 레트로핏 로깅 인터셉터
+    def retrofit_interceptor_version = "4.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofit_interceptor_version"
+
 }
