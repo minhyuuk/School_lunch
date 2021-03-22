@@ -31,9 +31,6 @@ android {
         jvmTarget = '1.8'
     }
 
-    viewBinding{
-        enabled = true
-    }
 
 }
 
@@ -47,9 +44,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    // 메테리얼
-    implementation 'com.google.android.meterial:meterial:1.1.0'
 
     // 레트로핏
     def retrofit_version = "2.8.1"
