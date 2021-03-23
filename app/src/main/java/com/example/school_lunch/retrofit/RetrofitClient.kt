@@ -10,22 +10,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     // 레트로핏 클라이언트 선언
-    private var retrofitClient: Retrofit? = null
+    private var instance: Retrofit? = null
 //    private lateinit var retrofitClient : Retrofit
 
     // 레트로핏 클라이언트 가져오기
-    fun getClient(baseUrl: String): Retrofit? {
+
+    fun getClient(): Retrofit? {
         Log.d(TAG, "RetrofitClient - getClient() 호출")
 
-        if (retrofitClient == null) {
+        if (instance == null) {
 
             // 레트로핏 빌더를 통해 인스턴스 생성
-            retrofitClient = Retrofit.Builder()
-                    .baseUrl(baseUrl)
+            instance = Retrofit.Builder()
+                    .baseUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
         }
-        return retrofitClient
+        return instance
     }
 
 }
