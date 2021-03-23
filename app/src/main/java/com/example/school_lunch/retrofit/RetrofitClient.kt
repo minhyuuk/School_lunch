@@ -15,14 +15,15 @@ object RetrofitClient {
 
     // 레트로핏 클라이언트 가져오기
 
-    fun getClient(): Retrofit? {
+    // 싱글톤
+    fun getInstance(): Retrofit? {
         Log.d(TAG, "RetrofitClient - getClient() 호출")
 
         if (instance == null) {
 
             // 레트로핏 빌더를 통해 인스턴스 생성
             instance = Retrofit.Builder()
-                    .baseUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?")
+                    .baseUrl("https://open.neis.go.kr/hub/mealServiceDietInfo?/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
         }

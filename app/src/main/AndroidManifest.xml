@@ -12,15 +12,12 @@
         android:roundIcon="@mipmap/ic_main_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.School_lunch">
-        <activity android:name=".splash.Splash">
+        <activity android:name=".main.Lunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".main.Lunch">
-
         </activity>
     </application>
 
