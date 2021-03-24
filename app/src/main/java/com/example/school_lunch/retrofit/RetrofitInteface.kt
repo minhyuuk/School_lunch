@@ -1,6 +1,6 @@
 package com.example.school_lunch.retrofit
 
-import com.example.school_lunch.data.Row
+import com.example.school_lunch.data.Meal
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,18 +11,16 @@ interface RetrofitInteface {
 
     // 코드의 재사용성을 높이기 위해 여기서 meal service를 value 값으로 넣어준다.
     @GET("/mealServiceDietInfo?")
-    fun ApiService(@Query("ATPT_OFCDC_SC_CODE") ATPT_OFCDC_SC_CODE: String,
-                   @Query("ATPT_OFCDC_SC_NM") ATPT_OFCDC_SC_NM: String,
-                   @Query("SD_SCHUL_CODE") SD_SCHUL_CODE: String,
-                   @Query("SCHUL_NM") SCHUL_NM: String,
-                   @Query("MMEAL_SC_CODE") MMEAL_SC_CODE: String,
-                   @Query("MMEAL_SC_NM") MMEAL_SC_NM: String,
-                   @Query("MLSV_YMD") MLSV_YMD: String,
-                   @Query("MLSV_FGR") MLSV_FGR: String,
-                   @Query("DDISH_NM") DDISH_NM: String,
-                   @Query("ORPLC_INFO") ORPLC_INFO: String,
-                   @Query("CAL_INFO") CAL_INFO: String,
-                   @Query("NTR_INFO") NTR_INFO: String,
-                   @Query("MLSV_FROM_YMD") MLSV_FROM_YMD: String,
-                   @Query("MLSV_TO_YMD") MLSV_TO_YMD: String): Call<Row>
+    fun ApiService(
+            @Query("ATPT_OFCDC_SC_CODE") gwangju: String, // 광주 교육청 코드,  F10
+            @Query("MLSV_YMD") day: String, // 식사 일자
+            @Query("MMEAL_SC_CODE") num: String, // 아침 점심 저녁, 1,2,3
+            @Query("SD_SCHUL_CODE") school: String, // 표준 학교 코드, 7380292
+
+            @Query("KEY") key: String, // api 인증키, 9e67bf29119b4c5389bec9404585ad45
+            @Query("Type") Type: String, // json 타입
+            @Query("pIndex") pIndex: Int? = null, // 페이지 위치 |   기본값 : 1(sample key는 1 고정)
+            @Query("psize") pSize: Int? = null // 페이지 당 신청 숫자	|  기본값 : 100(sample key는 5 고정)
+    ): Call<Meal>
+
 }
