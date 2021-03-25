@@ -6,6 +6,7 @@ import com.example.school_lunch.R
 
 // Main
 
+// retrofit interface 사용
 class Lunch : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
