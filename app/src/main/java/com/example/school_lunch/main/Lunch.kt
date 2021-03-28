@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import retrofit2.Call
 import android.util.Log
+import android.widget.Toast
 import com.example.school_lunch.retrofit.RetrofitBuilder
 import com.example.school_lunch.databinding.ActivityLunchBinding
 import java.text.SimpleDateFormat
@@ -27,6 +28,7 @@ class Lunch : AppCompatActivity() {
 
     // 식사코드 1,2,3
     // 아침 점심 저녁 순으로 배정
+
     var time: Int = 0
 
     val bind by lazy { ActivityLunchBinding.inflate(layoutInflater) }
@@ -59,46 +61,39 @@ class Lunch : AppCompatActivity() {
         RetrofitBuilder.getInstance.ApiService("${dateFormatOne}",time).enqueue(object : Callback<Meal> {
 
 
-
             override fun onResponse(call: Call<Meal>, response: Response<Meal>) {
 
-                val res = response.body()!!.mealServiceDietInfo[1].row
-                if (res != null) {
 
-                    for (i in 0 until res.size) {
+                if (response.isSuccessful) {
+                    val res = response.body()?.mealServiceDietInfo?.get(1)?.row
+                    Toast.makeText(applicationContext,"급식이 없습니다", Toast.LENGTH_SHORT).show()
+                    if (res != null) {
 
-                        val obj = res.get(i)
-                        val row = obj.DDISH_NM
-                                .replace("/", "")
-                                .replace("<br/>", "\n")
-                                .replace("<br>", "\n")
-                                .replace("*", "")
-                                .replace("."+i, "")
+                        for (i in 0 until res.size) {
 
-                        when (time) {
-                            1 -> {
-                                bind.textMorning.text = row
-                                Log.d(TAG, "onFirstResponse: ${row}")
-                            }
-                            2 -> {
-                                bind.textLunch.text = row
-                                Log.d(TAG, "onSecondResponse: ${row}")
-                            }
-                            3 -> {
-                                bind.textDinner.text = row
-                                Log.d(TAG, "onThirdResponse: ${row}")
+                            val objt = res.get(i)
+                            val row = objt.DDISH_NM
+                                    .replace("/", "")
+                                    .replace("<br/>", "\n")
+                                    .replace("<br>", "\n")
+                                    .replace("*", "")
+                                    .replace(".", "")
+                                    .replace("" + i.toString(), "")
+
+                            when (time) {
+                                1 -> bind.textMorning.text = row
+                                2 -> bind.textLunch.text = row
+                                3 -> bind.textDinner.text = row
                             }
                         }
-
+                        Log.d(TAG, "성공 : ${response.raw()}")
                     }
-                    Log.d(TAG, "성공 : ${response.raw()}")
                 }
             }
 
             override fun onFailure(call: Call<Meal>, t: Throwable) {
                 Log.d(TAG, "실패 - ${t} ")
             }
-
         })
     }
 
