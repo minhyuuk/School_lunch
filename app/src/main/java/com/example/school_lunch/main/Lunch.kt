@@ -11,7 +11,6 @@ import java.util.*
 import com.example.school_lunch.data.Meal
 import retrofit2.Callback
 import retrofit2.Response
-import java.nio.BufferOverflowException
 
 // Main
 
@@ -32,7 +31,7 @@ class Lunch : AppCompatActivity() {
 
     val bind by lazy { ActivityLunchBinding.inflate(layoutInflater) }
 
-    val TAG: String = "log"
+    val TAG: String = "로그"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,15 +58,22 @@ class Lunch : AppCompatActivity() {
     fun Build() {
         RetrofitBuilder.getInstance.ApiService("${dateFormatOne}",time).enqueue(object : Callback<Meal> {
 
+
+
             override fun onResponse(call: Call<Meal>, response: Response<Meal>) {
 
-                val res = response.body()!!.mealServiceDietInfo.get(1).row
+                val res = response.body()!!.mealServiceDietInfo[1].row
                 if (res != null) {
 
                     for (i in 0 until res.size) {
 
                         val obj = res.get(i)
-                        val row = obj.DDISH_NM.replace("/", "").replace("<br/>", "\n")
+                        val row = obj.DDISH_NM
+                                .replace("/", "")
+                                .replace("<br/>", "\n")
+                                .replace("<br>", "\n")
+                                .replace("*", "")
+                                .replace("."+i, "")
 
                         when (time) {
                             1 -> {
@@ -85,13 +91,12 @@ class Lunch : AppCompatActivity() {
                         }
 
                     }
+                    Log.d(TAG, "성공 : ${response.raw()}")
                 }
             }
 
             override fun onFailure(call: Call<Meal>, t: Throwable) {
-
-                Log.d(TAG, "코드에 오류가 생겼습니다")
-
+                Log.d(TAG, "실패 - ${t} ")
             }
 
         })
