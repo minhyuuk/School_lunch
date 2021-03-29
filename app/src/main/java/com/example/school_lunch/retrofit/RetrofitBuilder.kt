@@ -2,6 +2,7 @@ package com.example.school_lunch.retrofit
 
 import android.util.Log
 import androidx.constraintlayout.widget.Constraints.TAG
+import com.example.school_lunch.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,7 +37,7 @@ object RetrofitBuilder {
 
     init {
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://open.neis.go.kr/")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createOkHttpClient())
                 .build()

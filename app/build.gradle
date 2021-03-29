@@ -7,6 +7,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    // keystoreProperties 선언
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
     defaultConfig {
         applicationId "com.example.school_lunch"
         minSdkVersion 16
@@ -15,6 +20,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 암호화 할 URL 주소
+        buildConfigField "String", "BASE_URL", keystoreProperties["BASE_URL"]
+        buildConfigField "String", "GET_URL", keystoreProperties["GET_URL"]
     }
 
     buildTypes {

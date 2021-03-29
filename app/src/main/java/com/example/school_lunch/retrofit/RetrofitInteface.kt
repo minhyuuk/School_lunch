@@ -1,5 +1,6 @@
 package com.example.school_lunch.retrofit
 
+import com.example.school_lunch.BuildConfig
 import com.example.school_lunch.data.Meal
 import retrofit2.Call
 import retrofit2.http.GET
@@ -10,7 +11,7 @@ import retrofit2.http.Query
 interface RetrofitInteface {
 
     // 코드의 재사용성을 높이기 위해 여기서 meal service를 value 값으로 넣어준다.
-    @GET("hub/mealServiceDietInfo")
+    @GET(BuildConfig.GET_URL)
     fun ApiService(
             @Query("MLSV_YMD") day : String, // 식사 일자
             @Query("MMEAL_SC_CODE") num :Int, // 아침 점심 저녁, 1,2,3

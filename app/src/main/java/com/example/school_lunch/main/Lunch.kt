@@ -66,7 +66,7 @@ class Lunch : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     val res = response.body()?.mealServiceDietInfo?.get(1)?.row
-                    Toast.makeText(applicationContext,"급식이 없습니다", Toast.LENGTH_SHORT).show()
+
                     if (res != null) {
 
                         for (i in 0 until res.size) {
@@ -88,9 +88,10 @@ class Lunch : AppCompatActivity() {
                         }
                         Log.d(TAG, "성공 : ${response.raw()}")
                     }
+                }else{
+                    Toast.makeText(applicationContext,"급식이 없습니다", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<Meal>, t: Throwable) {
                 Log.d(TAG, "실패 - ${t} ")
             }
