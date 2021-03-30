@@ -73,12 +73,13 @@ class Lunch : AppCompatActivity() {
 
                             val objt = res.get(i)
                             val row = objt.DDISH_NM
-                                    .replace("/", "")
-                                    .replace("<br/>", "\n")
-                                    .replace("<br>", "\n")
-                                    .replace("*", "")
-                                    .replace(".", "")
-                                    .replace("" + i.toString(), "")
+                                    .replace("/", "").replace("<br/>", "\n").replace("<br>", "\n").replace("*", "")
+                                    .replace(".", "").replace("0", "").replace("1", "").replace("2", "")
+                                    .replace("3", "").replace("4", "").replace("5", "").replace("6", "")
+                                    .replace("7", "").replace("8", "").replace("9", "").replace("10", "")
+                                    .replace("11", "").replace("12", "").replace("13", "").replace("14", "")
+                                    .replace("15", "").replace("16", "").replace("17", "").replace("18", "")
+                                    .replace("19", "").replace("20", "")
 
                             when (time) {
                                 1 -> bind.textMorning.text = row
