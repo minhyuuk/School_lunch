@@ -54,7 +54,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/font_sub"
                 android:gravity="center"
-                android:text="조식"
+                android:text="아침"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 

@@ -89,8 +89,6 @@ class Lunch : AppCompatActivity() {
                         }
                         Log.d(TAG, "성공 : ${response.raw()}")
                     }
-                }else{
-                    Toast.makeText(applicationContext,"급식이 없습니다", Toast.LENGTH_SHORT).show()
                 }
             }
             override fun onFailure(call: Call<Meal>, t: Throwable) {
